@@ -1,9 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaGraduationCap, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { getResource } from '../services/mockDataService';
 
 const Footer = () => {
+  const contact = getResource('abhyas_contact') || {};
+
   return (
     <footer style={{ backgroundColor: 'var(--primary-color)', color: 'var(--text-light)', paddingTop: '60px', paddingBottom: '20px', marginTop: '50px' }}>
       <Container>
@@ -20,10 +23,10 @@ const Footer = () => {
               Empowering students to become compassionate, responsible, and innovative global citizens through holistic education and excellence.
             </p>
             <div className="d-flex gap-3 mt-3">
-              <a href="#" style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaFacebook /></a>
-              <a href="#" style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaTwitter /></a>
-              <a href="#" style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaInstagram /></a>
-              <a href="#" style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaLinkedin /></a>
+              <a href={contact.facebook || '#'} style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaFacebook /></a>
+              <a href={contact.twitter || '#'} style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaTwitter /></a>
+              <a href={contact.instagram || '#'} style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaInstagram /></a>
+              <a href={contact.linkedin || '#'} style={{ color: 'var(--text-light)', fontSize: '1.5rem', transition: 'color 0.3s' }} onMouseOver={(e) => e.target.style.color = 'var(--accent-color)'} onMouseOut={(e) => e.target.style.color = 'var(--text-light)'}><FaLinkedin /></a>
             </div>
           </Col>
           
@@ -44,10 +47,10 @@ const Footer = () => {
               <li className="mb-3 d-flex align-items-start">
                 <FaMapMarkerAlt className="mt-1 me-3" style={{ color: 'var(--secondary-color)', minWidth: '16px' }} />
                 <div style={{ width: '100%' }}>
-                  <span>123 Education Lane, Knowledge Park, Cityville, State, 12345</span>
+                  <span>{contact.address}</span>
                   <div className="mt-2" style={{ width: '100%', height: '120px', borderRadius: '8px', overflow: 'hidden', border: '2px solid var(--accent-color)' }}>
                     <iframe 
-                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.18693015574!2d83.5496475!3d18.2930577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3bf51fd86c9d27%3A0x5c73b5482220911d!2sAbhyas%20School%2C%20A%20Center%20For%20Excellence%2C%20IIT%20JEE%20Foundation!5e0!3m2!1sen!2sin!4v1781195909684!5m2!1sen!2sin" 
+                      src={contact.mapEmbedUrl}
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
@@ -61,11 +64,11 @@ const Footer = () => {
               </li>
               <li className="mb-3 d-flex align-items-center">
                 <FaPhoneAlt className="me-3" style={{ color: 'var(--secondary-color)' }} />
-                <span>+1 (234) 567-8900</span>
+                <span>{contact.phone}</span>
               </li>
               <li className="mb-3 d-flex align-items-center">
                 <FaEnvelope className="me-3" style={{ color: 'var(--secondary-color)' }} />
-                <span>info@abhyasschool.edu</span>
+                <span>{contact.email}</span>
               </li>
             </ul>
           </Col>
@@ -73,7 +76,7 @@ const Footer = () => {
         
         <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.2)', paddingTop: '20px', textAlign: 'center', marginTop: '20px' }}>
           <p style={{ margin: 0, fontSize: '0.9rem', opacity: 0.8 }}>
-            &copy; {new Date().getFullYear()} ABHYAS School. All rights reserved. Designed for Excellence.
+            &copy; {new Date().getFullYear()} {contact.footerCopyright}
           </p>
         </div>
       </Container>

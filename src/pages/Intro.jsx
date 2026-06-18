@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
+import { FaUserShield, FaUser } from 'react-icons/fa';
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -12,6 +13,10 @@ const Intro = () => {
 
   const handleEnter = () => {
     navigate('/home');
+  };
+
+  const handleUserLogin = () => {
+    alert("User/Student Login feature coming soon!");
   };
 
   return (
@@ -90,32 +95,103 @@ const Intro = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
+          className="d-flex flex-column align-items-center gap-3"
         >
           <Button 
             onClick={handleEnter}
             style={{ 
-              backgroundColor: 'var(--secondary-color)', 
-              borderColor: 'var(--secondary-color)',
+              backgroundColor: 'rgba(255, 255, 255, 0.15)', 
+              borderColor: 'rgba(255, 255, 255, 0.3)',
+              color: 'white',
               padding: '15px 40px',
               fontSize: '1.2rem',
               fontWeight: 'bold',
               borderRadius: '30px',
-              boxShadow: '0 4px 15px rgba(242, 101, 34, 0.4)',
+              backdropFilter: 'blur(5px)',
               transition: 'all 0.3s ease'
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--secondary-color-hover)';
+              e.currentTarget.style.backgroundColor = 'var(--secondary-color)';
+              e.currentTarget.style.borderColor = 'var(--secondary-color)';
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 101, 34, 0.6)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 101, 34, 0.5)';
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--secondary-color)';
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(242, 101, 34, 0.4)';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           >
             Enter the Campus
           </Button>
+
+          {/* Quick Login Buttons */}
+          <div className="d-flex gap-3 mt-3">
+            <Button 
+              as={Link} 
+              to="/admin" 
+              style={{ 
+                backgroundColor: 'var(--primary-color)', 
+                borderColor: 'var(--primary-color)', 
+                color: 'white',
+                fontWeight: 'bold', 
+                borderRadius: '25px',
+                padding: '10px 25px',
+                fontSize: '0.95rem',
+                boxShadow: '0 4px 15px rgba(197, 22, 114, 0.4)',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--primary-color-hover)';
+                e.currentTarget.style.borderColor = 'var(--primary-color-hover)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(197, 22, 114, 0.6)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--primary-color)';
+                e.currentTarget.style.borderColor = 'var(--primary-color)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 15px rgba(197, 22, 114, 0.4)';
+              }}
+            >
+              <FaUserShield /> Admin Login
+            </Button>
+            <Button 
+              onClick={handleUserLogin} 
+              style={{ 
+                backgroundColor: 'var(--secondary-color)', 
+                borderColor: 'var(--secondary-color)', 
+                color: 'white',
+                fontWeight: 'bold', 
+                borderRadius: '25px',
+                padding: '10px 25px',
+                fontSize: '0.95rem',
+                boxShadow: '0 4px 15px rgba(242, 101, 34, 0.4)',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--secondary-color-hover)';
+                e.currentTarget.style.borderColor = 'var(--secondary-color-hover)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(242, 101, 34, 0.6)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--secondary-color)';
+                e.currentTarget.style.borderColor = 'var(--secondary-color)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 15px rgba(242, 101, 34, 0.4)';
+              }}
+            >
+              <FaUser /> User Login
+            </Button>
+          </div>
         </motion.div>
       </Container>
     </motion.div>
@@ -123,3 +199,4 @@ const Intro = () => {
 };
 
 export default Intro;
+

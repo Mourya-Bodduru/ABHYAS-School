@@ -1,0 +1,10 @@
+{
+  "name": "abhyas-school-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix ./ABHYAS-School-main run dev",
+    "build": "npm --prefix ./ABHYAS-School-main run build",
+    "preview": "npm --prefix ./ABHYAS-School-main run preview",
+    "lint": "npm --prefix ./ABHYAS-School-main run lint"
+  }
+}
